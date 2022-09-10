@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
+import { Link } from "react-router-dom";
 
 const Veggie = () => {
 
@@ -40,13 +41,15 @@ const Veggie = () => {
             {veggie.map((recipe) => {
                 return (
                   <SplideSlide key={recipe.id}>
+                    <Link to={'/recipe/'+ recipe.id}>
                 <div
                   
                   className="my-2 mx-2 min-h-[100px] rounded overflow-hidden relative"
-                >
+                  >
                   <p className="absolute text-xl top-5 left-5">{recipe.title}</p>
                   <img src={recipe.image} alt={recipe.title} className='rounded' />
                 </div>
+                  </Link>
           </SplideSlide>
               );
             })}
