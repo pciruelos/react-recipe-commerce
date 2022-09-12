@@ -22,14 +22,32 @@ const Recipe = () => {
 
 
   return (
-    <div className='mt-10 mb-5 flex '>
-        <div>
+    <div className='mt-10 mb-5 flex justify-around m-auto'>
+        <div >
             <h2 className='m-2'>{details.title}</h2>
             <img src={details.image} alt="" />
         </div>
-        <div>
-            <button onClick={()=> setActivetab('intrucciones')} className={activetab === 'instrucciones' ? 'bg-black px-4 py-2 text-white m-2' : 'bg-white px-4 py-2 text-black m-2'}>Intrucctions</button>
-            <button onClick={()=> setActivetab('ingrdients')} className={activetab === 'ingredientes' ? 'bg-black px-4 py-2 text-white m-2' : 'bg-white px-4 py-2 text-black m-2'}>ingredients</button>
+        <div className='w-1/2 mx-5'>
+            <div >
+            <button onClick={()=> setActivetab('instrucciones')} className={activetab === 'instrucciones' ? 'bg-black px-4 py-2 text-white m-2' : 'bg-white px-4 py-2 text-black m-2'}>instrucciones</button>
+            <button onClick={()=> setActivetab('ingrdients')} className={activetab === 'ingrdients' ? 'bg-black px-4 py-2 text-white m-2' : 'bg-white px-4 py-2 text-black m-2'}>ingrdients</button>
+          {activetab === 'instrucciones' && (
+            <div>
+
+            <h3 dangerouslySetInnerHTML={{__html:details.summary }}></h3>
+            <h3 dangerouslySetInnerHTML={{__html:details.instructions }}></h3>
+            </div>
+          )}
+          {activetab === 'ingrdients' && (
+            <ul>
+              {details.extendedIngredients.map((i) => 
+              <li key={i.id}>{i.original}</li>
+              )}
+            </ul>
+
+          )}
+            
+              </div>
         </div>
     </div>
   )

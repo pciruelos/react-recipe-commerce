@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Cousine = () => {
   const [cuisine, setCuisine] = useState([]);
@@ -20,16 +20,24 @@ const Cousine = () => {
   }, [params.type]);
 
   return (
-    <div className="grid grid-cols-5 gap-4 ">
+    <motion.div
+     animate={{opacity: 1}}
+     initial={{opacity:0}}
+     exit={{opacity:0}}
+     transition={{duration:1}}
+    
+    className="grid grid-cols-5 gap-4 ">
       {cuisine.map((item) => {
         return (
           <div key={item.id} className=''>
+            <Link to={'/recipe/'+ item.id}>
             <img src={item.image} alt={item.title}  className='rounded-2xl'/>
             <p className="text-center py-2">{item.title}</p>
+            </Link>
           </div>
         );
       })}
-    </div>
+    </motion.div>
   );
 };
 

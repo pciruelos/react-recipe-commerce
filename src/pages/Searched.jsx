@@ -1,5 +1,5 @@
 import {useEffect,useState} from 'react'
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 
 const Searched = () => {
     const [searchedRecipes, setSearchedRecipes] = useState([])
@@ -22,8 +22,10 @@ const Searched = () => {
           {searchedRecipes.map((item) => {
             return (
               <div key={item.id} className=''>
+                <Link to={'/recipe/'+ item.id}>
                 <img src={item.image} alt={item.title}  className='rounded-2xl'/>
                 <p className="text-center py-2">{item.title}</p>
+                </Link>
               </div>
             );
           })}
